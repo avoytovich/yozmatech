@@ -1,0 +1,3 @@
+const LOYOUT_SUCCESS = 'LOYOUT_SUCCESS';
+
+export { LOYOUT_SUCCESS };
