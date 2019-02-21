@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
-import "./style/main.less";
-import "./style/main.css";
+import history from './helper/history';
+import configureStore from './redux/configureStore';
+import Layout from './../src/components/Layout';
+import Test from './../src/components/Test';
+import checkAuth from './../src/helper/redirections';
 
-class Welcome extends React.Component {
-    render () {
-        return <h1>Hello World from React boilerplate</h1>;
-    }
-}
-ReactDOM.render(<Welcome />, document.getElementById('root'));
+const store = configureStore({}, history);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/home" component={Layout} />
+        <Route path="/test" component={Test} onEnter={checkAuth} />
+        <Redirect from="/" to="/home" />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
