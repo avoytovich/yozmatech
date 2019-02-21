@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75px;
+  background-color: rebeccapurple;
+}
+
+.wrapper .container-link {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-link .link {
+  margin: 10px;
+}
+
+.container-link .link .link-title {
+  color: #ffffff;
+  font-size: 20px;
+}
