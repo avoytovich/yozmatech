@@ -1,6 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": "react",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "indent": ["error", 2]
+  },
   "env": {
     "browser": true,
     "node": true
