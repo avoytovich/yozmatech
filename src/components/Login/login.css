@@ -1,0 +1,17 @@
+.wrapper-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #001529;
+}
+
+.wrapper-login .container-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kep-login-facebook {
+  border-radius: 10px !important;
+}

@@ -1,7 +1,5 @@
-import history from './history';
+//import history from './history';
 
-const checkAuth = () => (
-  !sessionStorage.getItem('token') && history.push('/home')
-);
+const checkAuth = () => !JSON.parse(localStorage.getItem('login'));
 
-export default checkAuth();
+export default checkAuth;
