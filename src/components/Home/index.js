@@ -62,10 +62,11 @@ const Home = props => {
   };
 
   const removeLink = () => {
-    const changedMenu = [...menu];
-    changedMenu[selectedMenu].links = changedMenu[selectedMenu].links.filter(el => el != linkInput);
-    setMenu(changedMenu);
-    return reuseWithLocalStorage([...changedMenu]);
+    props.dispatch({
+      type: 'REMOVE_LINK',
+      selectedMenu,
+      payload: linkInput,
+    });
   };
 
   const getListFooter = () => (

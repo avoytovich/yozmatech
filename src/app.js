@@ -31,6 +31,14 @@ function App(props) {
         links: [...state[action.selectedMenu].links, action.payload]
       };
       return changedState;
+    case 'REMOVE_LINK':
+      setSelectedMenu(action.selectedMenu);
+      const changed = [...state];
+      changed[action.selectedMenu] = {
+        title: state[action.selectedMenu].title,
+        links: [...state[action.selectedMenu].links.filter(el => el != action.payload)]
+      };
+      return changed;
     case 'GET_LOCALSTORAGE':
       return JSON.parse(localStorage.getItem('menu'));
     default:
