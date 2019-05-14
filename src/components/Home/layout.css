@@ -1,0 +1,21 @@
+.wrapper-layout {
+  padding-top: 75px;
+}
+
+.container-button {
+  margin: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-input {
+  margin: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-link-order {
+  min-width: 5%;
+}

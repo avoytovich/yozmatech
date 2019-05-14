@@ -1,11 +1,11 @@
 {
-  "name": "PhotoSharing_FRONT",
+  "name": "Bookmars_FRONT",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --history-api-fallback",
+    "start": "webpack-dev-server --hot --mode development --history-api-fallback",
     "format": "prettier --write \"src/**/*.js\"",
     "eslint-fix": "eslint --fix \"src/**/*.js\"",
     "build": "webpack--mode production"
@@ -15,17 +15,18 @@
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
-    "connected-react-router": "^6.3.1",
+    "antd": "^3.16.2",
+    "axios": "^0.18.0",
     "history": "^4.7.2",
+    "lodash": "^4.17.11",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "react-facebook-login": "^4.1.1",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
