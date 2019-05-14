@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
-import {
-  Grid,
-  Link,
-  Typography
-} from '@material-ui/core';
+import React, { useReducer } from 'react';
+import { Grid } from '@material-ui/core';
 import FacebookLogin from 'react-facebook-login';
 import { withRouter } from 'react-router-dom';
-import { get } from 'lodash';
+import { get, omit } from 'lodash';
 
-import checkAuth from '../../helper/redirections';
-import history from '../../helper/history';
+import { wrapRequest } from "../../utils/api";
 
 import './login.css';
-import { menuCategories } from '../../helper/constants';
 
-function Header(props) {
-
+const Login = props => {
+  console.log('props Login', props);
   const links = [
     {
       title: 'Log in',
@@ -27,7 +21,51 @@ function Header(props) {
     }
   ];
 
-  const responseFacebook = (response) => {
+  const loginReducer = (state, action) => {
+    switch (action.type) {
+    case 'AUTH':
+      return { ...state, data: action.payload };
+    default:
+      throw new Error();
+    }
+  };
+
+  const [state, dispatch] = useReducer(loginReducer, { data: [] });
+
+  const responseFacebook = async response => {
+    /*console.log('response', response);
+    const tokenBlob = new Blob(
+      [
+        JSON.stringify(
+          {
+            access_token: response.accessToken,
+          },
+          null,
+          2,
+        ),
+      ],
+      { type: "application/json" },
+    );
+    const registerUser = await wrapRequest({
+      method: "POST",
+      url: `http://localhost:3000/auth/facebook`,
+      mode: "cors",
+      cache: "default",
+      data: tokenBlob,
+    });
+    const { data } = registerUser;
+    dispatch({
+      type: "AUTH",
+      payload: data,
+    });
+    console.log('state', state);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem(
+      "user",
+      JSON.stringify(omit(data, ["token", "_id", "email"])),
+    );*/
+
+
     const accessToken = get(response, 'accessToken');
     if (accessToken) {
       localStorage.setItem('login', JSON.stringify(response));
@@ -56,4 +94,4 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+export default withRouter(Login);
