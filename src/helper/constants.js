@@ -96,8 +96,13 @@ const menuCategories = [
   },
 ];
 
+const T = {
+  AUTH: 'AUTH',
+};
+
 export {
   LOYOUT_SUCCESS,
   text,
   menuCategories,
+  T,
 };

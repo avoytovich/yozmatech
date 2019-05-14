@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Grid,
   Link,
   Typography
 } from '@material-ui/core';
-import FacebookLogin from 'react-facebook-login';
 import { withRouter } from 'react-router-dom';
 import { get } from 'lodash';
 
 import './header.css';
 
-function Header(props) {
+function Head(props) {
 
   const links = [
     {
@@ -50,4 +49,4 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+export default withRouter(Head);
