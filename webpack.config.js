@@ -33,6 +33,11 @@ module.exports = {
       },
     ]
   },
+  resolve: {
+    alias: {
+      Helper: path.resolve(__dirname, 'src/helper/'),
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html'),

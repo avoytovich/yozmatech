@@ -1,15 +1,18 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import { Grid } from '@material-ui/core';
 import FacebookLogin from 'react-facebook-login';
 import { withRouter } from 'react-router-dom';
 import { get, omit } from 'lodash';
 
+import Context from '../../helper/context';
 import { wrapRequest } from "../../utils/api";
 
 import './login.css';
 
 const Login = props => {
   console.log('props Login', props);
+  const { dispatch, store } = useContext(Context);
+  console.log('store Login', store);
   const links = [
     {
       title: 'Log in',
@@ -20,17 +23,6 @@ const Login = props => {
       route: '/signup'
     }
   ];
-
-  const loginReducer = (state, action) => {
-    switch (action.type) {
-    case 'AUTH':
-      return { ...state, data: action.payload };
-    default:
-      throw new Error();
-    }
-  };
-
-  const [state, dispatch] = useReducer(loginReducer, { data: [] });
 
   const responseFacebook = async response => {
     /*console.log('response', response);
@@ -58,7 +50,7 @@ const Login = props => {
       type: "AUTH",
       payload: data,
     });
-    console.log('state', state);
+    console.log('store Login', store);
     localStorage.setItem("token", data.token);
     localStorage.setItem(
       "user",
