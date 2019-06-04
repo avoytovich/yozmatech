@@ -21,7 +21,6 @@ const menuCategories = [
     links:[
       'https://mail.ukr.net/classic#msglist',
       'https://mail.google.com/mail/u/0/#inbox',
-      'https://mail.google.com/mail/u/1/#inbox',
       'https://www.facebook.com/']
   },
   {
@@ -50,6 +49,10 @@ const menuCategories = [
       'https://dev.to/tiffany/bugfix-spelunking-in-someone-elses-code-495k',
       'https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf?fbclid=IwAR1bMwGjB-Kyzt-kBHZfU_OAyALpSsBDDZOsUWFoG66PvX0JOKh002zaYpc',
       'https://frontendmasters.com/books/javascript-enlightenment/#1',
+      'https://quantizd.com/building-live-streaming-app-with-node-js-and-react/',
+      'https://levelup.gitconnected.com/how-to-build-an-ionic-chat-app-with-react-and-stream-739b67611280',
+      'https://www.robinwieruch.de/react-scroll-to-item/',
+      'https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks/',
       'https://blog.logrocket.com/12-tips-for-writing-clean-and-scalable-javascript-3ffe30abfe20']
   },
   {
@@ -62,47 +65,28 @@ const menuCategories = [
   {
     title:'CURRENT PROJECT',
     links:[
-      'https://kindgeek.atlassian.net/projects/HBO/issues/HBO-125?filter=myopenissues',
-      'https://bitbucket.org/finovertech/hyperjar-back-office-fe/src/dev/constants/text.js',
-      'http://hyperjar-api.s3-website-us-east-1.amazonaws.com/graphs/admin/object/setkycstatusresult/',
-      'https://auth0.auth0.com/u/login','https://app.zeplin.io/project/5c5d81ad95e08804f18abeaa/screen/5ca377d877eeb0193df9b12d',
-      'http://localhost:3000/cardholder/07173750?filter=publicIdentifier&search=07173750']
+      'https://clubhouse.io/',
+      'https://github.com/',
+      'https://ninjamock.com/',
+      'https://cloud.mongodb.com/v2/5cd348bd79358e65c8fe03cf#metrics/replicaSet/5cd349939ccf649fa31fe024/explorer/bookmarks/users/find',
+      'http://localhost:8080']
   },
   {
     title:'STUFFS FOR PROJECT',
     links:[
-      'https://reactstrap.github.io/components/layout/',
-      'http://busypeoples.github.io/post/react-component-lifecycle/',
       'https://reactjs.org/docs/hooks-effect.html',
-      'https://nextjs.org/learn/basics/navigate-between-pages',
-      'https://codesandbox.io/s/741nv8951q',
-      'https://material.io/tools/icons/?icon=phonelink_ring&style=baseline',
-      'https://graphql.github.io/learn/',
-      'https://www.apollographql.com/docs/react/react-apollo-migration',
-      'https://codesandbox.io/s/r5qp83z0yq',
-      'https://coursehunters.net/course/udemy-graphql-with-react-complete-guide',
-      'https://github.com/zeit/next.js/tree/canary/examples/with-apollo-auth',
-      'https://github.com/adamsoffer/next-apollo-example',
-      'https://github.com/apollographql/apollo-client/blob/master/docs/source/basics/setup.md',
       'https://ant.design/components/list/',
       'https://lodash.com/docs/4.17.11#merge',
-      'https://hyperjar-admin.eu.auth0.com/login?state=g6Fo2SA5NkozS0I4emNJVTQ0Y190b1d0RTBIMHl3bXJzYUdnOKN0aWTZIGFpUEJlRE51d1F6QXlORHhqQVBTZU5EUm52RW5JYzRZo2NpZNkgVzJRN3AxMzNQd1ZhZzNWS3Q1bVhNcURFM1pBNHVxMTg&client=W2Q7p133PwVag3VKt5mXMqDE3ZA4uq18&protocol=oauth2&response_type=token%20id_token&redirect_uri=http%3A%2F%2F35.176.241.87%2Fauth-callback&scope=openid%20profile&audience=https%3A%2F%2Fhj-staging-api.finover.tech&nonce=pMonxUJ5sEKPAn1xweuVjY0MNPibc2-D&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMC4xIn0%3D',
-      'http://35.177.157.213/auth-callback?code=BWsqwGOlNlpK5FsN&state=g6Fo2SBiSkRCUktSUHJtSGNBOHBCXzBuMEpzUVJGSHNWVFVuR6N0aWTZIC1MVlVCOE92dG5UVUVvdmtSaGlFcW5pU2xSMzY4d3dCo2NpZNkgVzJRN3AxMzNQd1ZhZzNWS3Q1bVhNcURFM1pBNHVxMTg'
-    ]
+      'https://developers.facebook.com/apps/571013073413679/settings/basic/',
+      'https://www.tutorialspoint.com/mongodb/mongodb_query_document.htm',
+      'https://kentcdodds.com/blog/authentication-in-react-applications']
   },
   {
     title:'REST',
     links:[
-      'https://github.com/avoytovich/Bookmars',
-      'https://codepen.io/anon/pen/YMPGwv',
       'https://music.youtube.com/watch?v=So2_AxSXak4&list=LM',
       'http://radioskovoroda.com/radio',
-      'https://developers.facebook.com/apps/571013073413679/settings/basic/',
-      'https://www.tutorialspoint.com/mongodb/mongodb_query_document.htm',
-      'https://cloud.mongodb.com/v2/5cd348bd79358e65c8fe03cf#metrics/replicaSet/5cd349939ccf649fa31fe024/explorer/bookmarks/users/find',
-      'https://coursehunters.net/course/nauchites-pisat-na-ruby',
-      'https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/'
-    ]
+      'https://coursehunters.net/course/nauchites-pisat-na-ruby']
   }
 ];
 

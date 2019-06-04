@@ -5,11 +5,10 @@ import {
   Typography
 } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
-import { get } from 'lodash';
 
 import './header.css';
 
-function Head(props) {
+const Head = props => {
 
   const links = [
     {
@@ -20,6 +19,7 @@ function Head(props) {
 
   const handleLogOut = () => localStorage.setItem('login', JSON.stringify(null));
 
+  console.log('props Header', props);
   return (
     <div className="wrapper-header">
       <Grid container spacing={0} justify="center">

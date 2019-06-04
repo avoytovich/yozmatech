@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import 'antd/dist/antd.css';
 import { Layout, Menu, Icon, Button, Input, List, Anchor } from 'antd';
+import { get } from 'lodash';
 
 import Head from './../Header';
-import { text, menuCategories } from './../../helper/constants';
+import { text } from 'Helper/constants';
+import Context from './../../helper/context';
 
 import './layout.css';
 
@@ -15,16 +17,11 @@ const { Link } = Anchor;
 const {add, remove, header, footer} = text;
 
 const Home = props => {
-  const { store, selectedMenu, setSelectedMenu } = props;
-  const [menu, setMenu] = useState(JSON.parse(localStorage.getItem('menu')));
+  const { dispatch, store } = useContext(Context);
+  const content = get(store, 'content');
   const [menuInput, setMenuInput] = useState('');
   const [linkInput, setLinkInput] = useState('');
-
-  const reuseWithLocalStorage = data => {
-    localStorage.removeItem('menu');
-    localStorage.setItem('menu', JSON.stringify(data));
-    setMenu(JSON.parse(localStorage.getItem('menu')));
-  };
+  const [selectedMenuItem, setSelectedMenuItem] = useState(store.selectedMenuItem || 1);
 
   const getContent = (data, id) => (
     <List.Item>
@@ -36,35 +33,43 @@ const Home = props => {
   );
 
   const getListHeader = () => (
-    <div>{`${store && store[selectedMenu] && store[selectedMenu].title} CONTENT`}</div>
+    <div>{`${content[selectedMenuItem].title} CONTENT`}</div>
   );
 
-  const addMenu = () => {
-    props.dispatch({
+  const changedMenuItem = e => {
+    setSelectedMenuItem(e.key);
+    dispatch({
+      type: 'CHANGE_SELECTED_MENU_ITEM',
+      payload: e.key,
+    });
+  };
+
+  const addMenu = e => {
+    e.stopPropagation();
+    setSelectedMenuItem(content.length);
+    dispatch({
+      type: 'CHANGE_SELECTED_MENU_ITEM',
+      payload: content.length,
+    });
+    dispatch({
       type: 'ADD_TITLE',
       payload: menuInput,
     });
   };
 
-  const removeMenu = () => {
-    props.dispatch({
+  const removeMenu = e => {
+    e.stopPropagation();
+    dispatch({
       type: 'REMOVE_TITLE',
-      payload: menuInput,
+      payload: selectedMenuItem,
     });
   };
 
-  const addLink = () => {
-    props.dispatch({
-      type: 'ADD_LINK',
-      selectedMenu,
-      payload: linkInput,
-    });
-  };
-
-  const removeLink = () => {
-    props.dispatch({
-      type: 'REMOVE_LINK',
-      selectedMenu,
+  const actionLink = (e, data) => {
+    e.stopPropagation();
+    dispatch({
+      type: data,
+      selectedMenuItem,
       payload: linkInput,
     });
   };
@@ -80,13 +85,13 @@ const Home = props => {
       <div className="container-button">
         <Button
           type="primary"
-          onClick={() => addLink()}
+          onClick={(e) => actionLink(e, 'ADD_LINK')}
         >
           {add}
         </Button>
         <Button
           type="danger"
-          onClick={() => removeLink()}
+          onClick={(e) => actionLink(e, 'REMOVE_LINK')}
         >
           {remove}
         </Button>
@@ -94,8 +99,7 @@ const Home = props => {
     </div>
   );
 
-  /*console.log('props Home', props);
-  console.log('state(menu) Home', menu);*/
+  console.log('props Home', props);
   return (
     <>
       <Head/>
@@ -105,9 +109,14 @@ const Home = props => {
             overflow: 'auto', height: '100vh', position: 'fixed', left: 0,
           }}
           >
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={[`${selectedMenu}`]}>
-              {store && store.map((el, id) => (
-                <Menu.Item key={id} onClick={ e => setSelectedMenu(e.key) }>
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={[`1`]}
+              selectedKeys={[`${selectedMenuItem}`]}
+            >
+              {content.map((el, id) => (
+                <Menu.Item key={id} onClick={(e) => changedMenuItem(e)}>
                   <Icon type="menu-unfold"/>
                   <span className="nav-text">{el.title}</span>
                 </Menu.Item>
@@ -122,13 +131,13 @@ const Home = props => {
             <div className="container-button">
               <Button
                 type="primary"
-                onClick={() => addMenu()}
+                onClick={(e) => addMenu(e)}
               >
                 {add}
               </Button>
               <Button
                 type="danger"
-                onClick={() => removeMenu()}
+                onClick={(e) => removeMenu(e)}
               >
                 {remove}
               </Button>
@@ -145,7 +154,7 @@ const Home = props => {
                   header={getListHeader()}
                   footer={getListFooter()}
                   bordered
-                  dataSource={store && store[selectedMenu] && store[selectedMenu].links || []}
+                  dataSource={content[selectedMenuItem].links || []}
                   renderItem={(item, id) => getContent(item, id)}
                 />
               </div>
