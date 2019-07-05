@@ -6,6 +6,7 @@ import { get } from 'lodash';
 import Head from './../Header';
 import { text } from 'Helper/constants';
 import Context from './../../helper/context';
+import connect from './../../utils/connectFunction';
 
 import './layout.css';
 
@@ -58,11 +59,13 @@ const Home = props => {
   };
 
   const removeMenu = e => {
+    console.log('here');
     e.stopPropagation();
-    dispatch({
-      type: 'REMOVE_TITLE',
-      payload: selectedMenuItem,
-    });
+    props.dispatchRemoveTitle(selectedMenuItem);
+    // dispatch({
+    //   type: 'REMOVE_TITLE',
+    //   payload: selectedMenuItem,
+    // });
   };
 
   const actionLink = (e, data) => {
@@ -99,6 +102,7 @@ const Home = props => {
     </div>
   );
 
+  
   console.log('props Home', props);
   return (
     <>
@@ -169,4 +173,17 @@ const Home = props => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  return {store: state}
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchRemoveTitle: (payload) => dispatch({
+      type: 'REMOVE_TITLE',
+      payload,
+    })
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
