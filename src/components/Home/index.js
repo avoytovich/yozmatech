@@ -6,6 +6,8 @@ import { get } from 'lodash';
 import Head from './../Header';
 import { text } from 'Helper/constants';
 import Context from './../../helper/context';
+import connect from './../../utils/connectFunction';
+import action from './../../utils/actions';
 
 import './layout.css';
 
@@ -37,11 +39,9 @@ const Home = props => {
   );
 
   const changedMenuItem = e => {
+    console.log('here')
     setSelectedMenuItem(e.key);
-    dispatch({
-      type: 'CHANGE_SELECTED_MENU_ITEM',
-      payload: e.key,
-    });
+    props.dispatchChangedSelectedMenuItem('changedSelectedMenuItem', e.key);
   };
 
   const addMenu = e => {
@@ -58,11 +58,9 @@ const Home = props => {
   };
 
   const removeMenu = e => {
+    console.log('there')
     e.stopPropagation();
-    dispatch({
-      type: 'REMOVE_TITLE',
-      payload: selectedMenuItem,
-    });
+    props.dispatchRemoveTitle('removeTitle', selectedMenuItem);
   };
 
   const actionLink = (e, data) => {
@@ -169,4 +167,16 @@ const Home = props => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  return {store: state}
+};
+
+const mapDispatchToProps = dispatch => {
+  const actionData = (name, payload) => dispatch(action(name, payload))
+  return {
+    dispatchRemoveTitle: actionData,
+    dispatchChangedSelectedMenuItem: actionData
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
