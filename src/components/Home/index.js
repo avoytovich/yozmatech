@@ -7,6 +7,7 @@ import Head from './../Header';
 import { text } from 'Helper/constants';
 import Context from './../../helper/context';
 import connect from './../../utils/connectFunction';
+import action from './../../utils/actions';
 
 import './layout.css';
 
@@ -38,11 +39,9 @@ const Home = props => {
   );
 
   const changedMenuItem = e => {
+    console.log('here')
     setSelectedMenuItem(e.key);
-    dispatch({
-      type: 'CHANGE_SELECTED_MENU_ITEM',
-      payload: e.key,
-    });
+    props.dispatchChangedSelectedMenuItem('changedSelectedMenuItem', e.key);
   };
 
   const addMenu = e => {
@@ -59,13 +58,9 @@ const Home = props => {
   };
 
   const removeMenu = e => {
-    console.log('here');
+    console.log('there')
     e.stopPropagation();
-    props.dispatchRemoveTitle(selectedMenuItem);
-    // dispatch({
-    //   type: 'REMOVE_TITLE',
-    //   payload: selectedMenuItem,
-    // });
+    props.dispatchRemoveTitle('removeTitle', selectedMenuItem);
   };
 
   const actionLink = (e, data) => {
@@ -102,7 +97,6 @@ const Home = props => {
     </div>
   );
 
-  
   console.log('props Home', props);
   return (
     <>
@@ -178,11 +172,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+  const actionData = (name, payload) => dispatch(action(name, payload))
   return {
-    dispatchRemoveTitle: (payload) => dispatch({
-      type: 'REMOVE_TITLE',
-      payload,
-    })
+    dispatchRemoveTitle: actionData,
+    dispatchChangedSelectedMenuItem: actionData
   }
 };
 
