@@ -42,7 +42,7 @@ const App = props => {
             checkAuth() ? (
               <Redirect to="/login"/>
             ) : (
-              <Home />
+              <Home test='test'/>
             )
           )}/>
           <Route path="/test" render={() => (
