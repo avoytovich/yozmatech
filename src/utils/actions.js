@@ -1,13 +1,12 @@
 export default (name, payload) => {
   switch (name) {
   case 'removeTitle':
-    console.log('HERE')
+    console.log('tes');
     return {
       type: 'REMOVE_TITLE',
       payload,
     };
   case 'changedSelectedMenuItem':
-    console.log('THERE')
     return {
       type: 'CHANGE_SELECTED_MENU_ITEM',
       payload,

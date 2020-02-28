@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { get } from 'lodash';
+import LogRocket from 'logrocket';
 
 import history from './helper/history';
 import Context from './helper/context';
@@ -8,6 +9,8 @@ import generalReducer from './utils/generalReducer';
 import { Home, Login, Test } from './components';
 import checkAuth from './helper/redirections';
 import { menuCategories } from './helper/constants';
+
+LogRocket.init('6vridg/test');
 
 const App = props => {
 
