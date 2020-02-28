@@ -3,7 +3,7 @@ const LOYOUT_SUCCESS = 'LOYOUT_SUCCESS';
 const text = {
   add: 'ADD',
   remove: 'REMOVE',
-  header: 'BOOKMAR\'S',
+  header: 'BOOKMAR\'S REACT',
   footer: '©2019 Created by A.VOITOVYCH',
 };
 
