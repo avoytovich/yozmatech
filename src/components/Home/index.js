@@ -19,11 +19,12 @@ const { Link } = Anchor;
 const {add, remove, header, footer} = text;
 
 const Home = props => {
-  const { dispatch, store } = useContext(Context);
-  const content = get(store, 'content');
+  console.log('Home props', props);
+  // const { dispatch, store } = useContext(Context);
+  const { content } = get(props, 'store');
   const [menuInput, setMenuInput] = useState('');
   const [linkInput, setLinkInput] = useState('');
-  const [selectedMenuItem, setSelectedMenuItem] = useState(store.selectedMenuItem || 1);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(props.store.selectedMenuItem);
 
   const getContent = (data, id) => (
     <List.Item>
@@ -35,11 +36,10 @@ const Home = props => {
   );
 
   const getListHeader = () => (
-    <div>{`${content[selectedMenuItem].title} CONTENT`}</div>
+    <div>{`${content[props.store.selectedMenuItem].title} CONTENT`}</div>
   );
 
   const changedMenuItem = e => {
-    console.log('here')
     setSelectedMenuItem(e.key);
     props.dispatchChangedSelectedMenuItem('changedSelectedMenuItem', e.key);
   };
@@ -58,8 +58,12 @@ const Home = props => {
   };
 
   const removeMenu = e => {
-    console.log('there')
     e.stopPropagation();
+    if (!selectedMenuItem) {
+      setSelectedMenuItem(0);
+    } else if (selectedMenuItem == content.length - 1) {
+      setSelectedMenuItem(selectedMenuItem - 1);
+    }
     props.dispatchRemoveTitle('removeTitle', selectedMenuItem);
   };
 
@@ -152,7 +156,7 @@ const Home = props => {
                   header={getListHeader()}
                   footer={getListFooter()}
                   bordered
-                  dataSource={content[selectedMenuItem].links || []}
+                  dataSource={content[props.store.selectedMenuItem].links || []}
                   renderItem={(item, id) => getContent(item, id)}
                 />
               </div>

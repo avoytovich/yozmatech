@@ -17,7 +17,11 @@ const generalReducer = (state, action) => {
   case 'REMOVE_TITLE':
     const changedStateRemoveTitle = {...state};
     changedStateRemoveTitle.content = state.content.filter((el, index) => index != action.payload);
-    changedStateRemoveTitle.selectedMenuItem -= 1;
+    if (!changedStateRemoveTitle.selectedMenuItem) {
+      changedStateRemoveTitle.selectedMenuItem = 0;
+    } else if (changedStateRemoveTitle.selectedMenuItem == changedStateRemoveTitle.content.length) {
+      changedStateRemoveTitle.selectedMenuItem -= 1;
+    }
     return changedStateRemoveTitle;
   case 'ADD_LINK':
     const changedStateAddLink = {...state};
