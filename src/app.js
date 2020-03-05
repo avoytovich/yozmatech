@@ -1,61 +1,42 @@
 import React, { useEffect, useReducer } from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
-import { get } from 'lodash';
 import LogRocket from 'logrocket';
 
 import history from './helper/history';
 import Context from './helper/context';
 import generalReducer from './utils/generalReducer';
-import { Home, Login, Test } from './components';
+import { Home, LandingPage, Test } from './components';
 import checkAuth from './helper/redirections';
-import { menuCategories } from './helper/constants';
 
 LogRocket.init('6vridg/test');
 
 const App = props => {
 
-  const [store, dispatch] = useReducer(generalReducer, JSON.parse(localStorage.getItem('store')));
-  const content = get(store, 'content');
-  const selectedMenuItem = get(store, 'selectedMenuItem');
+  const [store, dispatch] = useReducer(generalReducer, {});
 
-  useEffect(() => {
-    (!JSON.parse(localStorage.getItem('store')) &&
-      localStorage.setItem('store', JSON.stringify({
-        content: menuCategories,
-        selectedMenuItem: 1,
-      }))
-    ) ||
-    !store && dispatch({ type: 'GET_LOCALSTORAGE' })
-  }, []);
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-    content && localStorage.setItem('store', JSON.stringify({
-      content,
-      selectedMenuItem,
-    }))
-  }, [content, selectedMenuItem]);
-
-  console.log('store', store);
+  //console.log('store', store);
   return(
     <Context.Provider value={{dispatch, store}}>
       <Router history={history}>
         <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/home" render={() => (
+          <Route path="/bookmark" component={LandingPage} />
+          <Route path="/user/:id" render={() => (
             checkAuth() ? (
-              <Redirect to="/login"/>
+              <Redirect to="/bookmark"/>
             ) : (
               <Home test='test'/>
             )
           )}/>
           <Route path="/test" render={() => (
             checkAuth() ? (
-              <Redirect to="/login"/>
+              <Redirect to="/bookmark"/>
             ) : (
               <Test />
             )
           )}/>
-          <Redirect from="/" to="/home" />
+          <Redirect from="/" to="/bookmark" />
         </Switch>
       </Router>
     </Context.Provider>

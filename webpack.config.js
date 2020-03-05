@@ -31,6 +31,27 @@ module.exports = {
           'less-loader',
         ],
       },
+      {
+        test: /\.sass$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { 
+              limit: 20000,
+            }
+          },
+          'image-webpack-loader'
+        ]
+      },
     ]
   },
   resolve: {
