@@ -1,11 +1,4 @@
-import Head from './Header';
-import Home from './Home';
-import LandingPage from './LandingPage';
-import Test from './Test';
+import ContactsPage from './ContactsPage';
+import Favorities from './Favorities';
 
-export {
-  Head,
-  Home,
-  LandingPage,
-  Test
-}
+export { ContactsPage, Favorities };
